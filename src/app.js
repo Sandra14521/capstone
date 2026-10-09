@@ -2,6 +2,7 @@ import express from 'express';
 import healthRoutes from './routes/health.routes.js';
 import usageRoutes from './routes/usage.routes.js';
 import billingRoutes from './routes/billing.routes.js';
+import plansRoutes from './routes/plans.routes.js';
 import stripeWebhookRoutes from './routes/stripe-webhook.routes.js';
 
 const app = express();
@@ -20,6 +21,7 @@ app.use(express.json({ limit: '32kb' }));
 app.use('/health', healthRoutes);
 app.use('/', usageRoutes);
 app.use('/billing', billingRoutes);
+app.use('/plans', plansRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found.' });
